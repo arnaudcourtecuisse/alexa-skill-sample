@@ -28,11 +28,14 @@
     "ask-sdk-core": "^2.10.2",
     "ask-sdk-dynamodb-persistence-adapter": "^2.10.2",
     "ask-sdk-model": "^1.35.1",
-    "source-map-support": "^0.5.19"
+    "express": "^4.17.1",
+    "source-map-support": "^0.5.19",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "@boxoffice/serverless-alexa-skills": "^0.2.7",
     "@types/express": "^4.17.13",
+    "@types/superagent": "^4.1.13",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "ask-sdk": "^2.10.2",
@@ -45,7 +48,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
-    "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.1",
     "serverless": "^2.64.1",
