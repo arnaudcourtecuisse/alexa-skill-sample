@@ -1,0 +1,7 @@
+.env
+.serverless
+node_modules
+lambda
+.vscode
+coverage
+tsconfig.tsbuildinfo

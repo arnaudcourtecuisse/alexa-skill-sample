@@ -1,0 +1,93 @@
+service: showcase-cinemas-skill
+frameworkVersion: ^2.15.0
+
+useDotenv: true
+
+provider:
+  name: aws
+  lambdaHashingVersion: 20201221
+  runtime: nodejs12.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:CreateTable
+          Resource: ${self:custom.resources.dynamoDbTableArn}
+
+custom:
+  resources:
+    accountPrefix: ${env:AWS_REGION}:${env:AWS_ACCOUNT_ID}
+    dynamoDbTableArn: arn:aws:dynamodb:${self:custom.resources.accountPrefix}:table/${env:DYNAMO_DB_TABLE}
+  endpoint:
+    local:
+      uri: ${env:DEV_SKILL_ENDPOINT, ''}
+      sslCertificateType: Wildcard
+
+  alexa:
+    # For Alexa APIs authentication
+    vendorId: ${env:AMAZON_VENDOR_ID}
+    clientId: ${env:AMAZON_CLIENT_ID}
+    clientSecret: ${env:AMAZON_CLIENT_SECRET}
+    # Skill data itself
+    skills:
+      - id: ${self:custom.config.skill.id}
+        manifest:
+          manifestVersion: "1.0"
+          apis:
+            custom:
+              endpoint: ${self:custom.endpoint.${opt:stage}}
+          permissions:
+            - name: "alexa::devices:all:address:full:read"
+            - name: "alexa::devices:all:geolocation:read"
+            - name: "alexa::profile:email:read"
+            - name: "alexa::profile:name:read"
+            - name: "payments:autopay_consent"
+          publishingInformation:
+            automaticDistribution:
+              isActive: false
+            distributionCountries:
+              - US
+            isAvailableWorldwide: false
+            category: MOVIE_SHOWTIMES
+            locales:
+              en-US:
+                name: ${self:custom.config.skill.name}
+                examplePhrases:
+                  - "Alexa, open ${self:custom.config.skill.name}"
+                summary: ${self:custom.config.skill.summary}
+                description: ${self:custom.config.skill.description}
+                keywords: ${self:custom.config.skill.keywords}
+          privacyAndCompliance:
+            allowsPurchases: true
+            containsAds: false
+            isChildDirected: false
+            isExportCompliant: true
+            locales:
+              en-US:
+                privacyPolicyUrl: ${self:custom.config.skill.privacyPolicyUrl}
+                termsOfUseUrl: ${self:custom.config.skill.termsOfUseUrl}
+            usesPersonalInfo: false
+        models:
+          en-US: ${file(model.yml)}
+  config: ${file(skill.yml)}
+# functions:
+#   alexa:
+#     handler: lambda/index.handler
+#     timeout: 10
+#     environment:
+#       # Skill environment
+#       ALEXA_SKILL_ID: ${self:custom.config.skill.id}
+#       DYNAMO_DB_TABLE: ${env:DYNAMO_DB_TABLE}
+#     events:
+#       - alexaSkill: ${self:custom.config.skill.id}
+
+plugins:
+  - "@boxoffice/serverless-alexa-skills"

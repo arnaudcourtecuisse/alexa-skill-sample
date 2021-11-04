@@ -1,0 +1,27 @@
+---
+interactionModel:
+  languageModel:
+    invocationName: ${env:DEV_SKILL_INVOCATION_NAME}
+    intents:
+      - name: AMAZON.CancelIntent
+        samples: []
+      - name: AMAZON.HelpIntent
+        samples: []
+      - name: AMAZON.StopIntent
+        samples: []
+      - name: AMAZON.NavigateHomeIntent
+        samples: []
+      - name: AMAZON.FallbackIntent
+        samples: []
+      - name: AMAZON.YesIntent
+        samples: []
+      - name: AMAZON.NoIntent
+        samples: []
+      - name: PingIntent
+        samples:
+          - ping
+      - name: PongIntent
+        samples:
+          - pong
+
+

@@ -1,0 +1,21 @@
+# Theses are shared with the skill code and come from the environment
+
+skill:
+  id: ${env:ALEXA_SKILL_ID}
+  name: ${env:DEV_SKILL_NAME}
+  termsOfUseUrl: https://www.showcasecinemas.com/terms-and-conditions
+  privacyPolicyUrl: https://www.showcasecinemas.com/privacy-policy
+  largeIconUri: >-
+    https://s3.amazonaws.com/CAPS-SSE/echo_developer/58fb/a3175047169f47bab168ac309cb893c2/APP_ICON_LARGE?versionId=WNN6fzlJPZOoGNV6IQL0NnHJ2QrGfwn2&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200429T151812Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDXWFVRR3%2F20200429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=69bbc01157a4b899ed428017359ea5f5e8b5fc33afe69df1dff760cfd65a8553
+  smallIconUri: >-
+    https://s3.amazonaws.com/CAPS-SSE/echo_developer/674e/421de9460a0e4a8784f47b9ea3b178cb/APP_ICON?versionId=mR_EV1uwfYv3DfiAGFaK4Hg3dPyl6SBB&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200429T151811Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDXWFVRR3%2F20200429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=420591190966b8e7d9c8b736f68b1ad5fe4c6f2f81607ac465ce7561fd268599
+
+  summary: >
+    Skill summary
+  description: >
+    Skill summary
+  testingInstructions: >
+    Test
+
+  keywords:
+    - Cinema
